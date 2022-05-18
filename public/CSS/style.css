@@ -14,7 +14,8 @@ body {
 
 h1,h2{
     text-align: center;
-    color: white;
+    color: black;
+    width: 2em;
 }
 
 .navbar .nav-item .nav-link{
