@@ -1,0 +1,14 @@
+body {
+    padding: 0;
+    margin: 0;
+    /* background-image:url(../images/style/fond.jpg); */
+    background-image:url(../images/style/home.jpg);
+    /* background-image: linear-gradient(green,yellow,red); */
+    background-attachment:fixed;
+    /* background-repeat: inherit; */
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    /* color: red; */
+    margin:0;
+    padding: 0;
+}
+

@@ -1,0 +1,43 @@
+body {
+    padding: 0;
+    margin: 0;
+    /* background-image:url(../images/style/fond.jpg); */
+    background-image:url(../images/style/white.png);
+    /* background-image: linear-gradient(green,yellow,red); */
+    background-attachment:fixed;
+    /* background-repeat: inherit; */
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    /* color: red; */
+    margin:0;
+    padding: 0;
+}
+
+h1,h2{
+    text-align: center;
+    color: white;
+}
+
+.navbar .nav-item .nav-link{
+    color: white;
+}
+
+.navbar{
+    /* background-image: linear-gradient(green,yellowgreen,black); */
+    /* box-shadow: 10px 2px 10px black; */
+    border-radius: 15px;
+    border: solid black;
+}
+
+/* .navbar{
+    background-image:url(../images/style/design12.gif);
+    background-image: linear-gradient(green,yellow,red);
+} */
+
+#btnChangeFirstName #svg {
+    display: flex;
+    justify-content: center;
+}
+
+/* img{
+    border: solid black;
+} */

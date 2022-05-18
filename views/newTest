@@ -1,0 +1,140 @@
+<?php
+// /* L'id de l'article a ne pas rajouter au panier temporaire */
+//     $id_none = intval($_POST['supprim']);
+			
+// /* création d'un tableau temporaire de stockage des articles */ 
+//     $panier_tmp = array("idtoi"=>array(),"qte"=>array(),"taille"=>array(),"prix"=>array()); 
+			
+// /* Nombre d'articles du panier */ 
+//     $nb_articles = count($_SESSION['panier']['id_article']); 
+            
+// /* Transfert du panier de session dans le panier temporaire */ 
+//     for($i=0; $i<$nb_articles; $i++) 
+//     { 
+//           /* On transfère tout sauf l'article à supprimer */ 
+//           if($_SESSION['panier']['idtoi'][$i] != $id_none) 
+//          { 
+// 		array_push($panier_tmp['idtoi'], $_SESSION['panier']['idtoi'][$i]); 
+//                 array_push($panier_tmp['qte'], $_SESSION['panier']['qte'][$i]); 
+//                 array_push($panier_tmp['taille'], $_SESSION['panier']['taille'][$i]); 
+//                 array_push($panier_tmp['prix'], $_SESSION['panier']['prix'][$i]); 
+//          } 
+//     } 
+            
+// /* Transfert terminé, on passe le panier à la session */ 
+//    $_SESSION['panier'] = $panier_tmp; 
+
+
+
+// 	session_start(); // démarrage de la session, utile plus tard
+// 	require_once('gen/connexion_base.php'); // connexion à la base de données
+// 	include_once('gen/tete.php'); // affichage du bandeau de la page
+
+	
+// 	IF (ISSET ($_SESSION['panier']) && ($_SESSION['panier'])>0){ 
+// 	$paniers=$_SESSION['panier'];
+	
+// 		echo "<h2>Votre panier contient :</h2>";
+// 		$total=0;
+		
+// 		foreach($paniers as $panier){
+// 			$sous_total=$panier['prix_ht']*$panier['qte'];
+// 			$total+=$sous_total;
+// 	?>	
+// 	<form action="panier_modif.php" method="post">
+// 	<fieldset>
+// 	<p><input type="hidden" name="ajout" value="0" /><br/>
+// 	Nom :<?php echo $panier['titre'];?><br/>	
+// 	Prix :<?php echo $panier['prix_ht']."&euro;";?>	
+	
+// 	<input type='hidden' name='id' value='<?php echo $panier['idtoi'];?>' />
+// 	<input type='hidden' name='produits' value='0' />
+// 	<input type="submit" value="Supprimer" name="supprim" /> <br /></p>
+	
+// </fieldset>
+// 	</form>	
+// <?php }
+// 	$_SESSION['panier']=$paniers;
+		
+// ?>	<table>
+// 		<tr>
+// 				<td colspan="5" align="right" class="total">Total TTC : <b><?php echo $total; ?> &euro;</b></td>
+				
+// 		</tr>
+// 		</table>	
+// 	<form action="commande.php" method="post">
+// 	<p><input type='hidden' name='produits' value='<?php echo $paniers; ?>' /> 
+// 		<input type="submit" value="Validez votre panier" name="ajouter" /></p>
+		
+// 		</form>
+	
+// 	<?php  
+		
+// 	echo '<p><a href="affichage_1.php" >Ajoutez des articles à votre panier</a></p> ';        
+// 	} 
+	
+// ELSE {
+// 		echo "<p>Votre panier est vide.<a href=\"index.php\">Retour à l'accueil</a></p>";
+// 	}
+// /* ***** fin de la page *******************/
+
+// 	include_once('gen/pied.php'); // affichage du pied de page
+// ?>
+
+
+// Voici le code de panier_modif.php
+
+// <?php
+// 	session_start(); // démarrage de la session, utile plus tard
+// 	require_once('gen/connexion_base.php');
+// 	include_once('gen/tete.php');
+	
+
+// 	/*IF(ISSET($_POST['supprim']) AND ($_SESSION["panier"]>0)){
+// 	$paniers=$_SESSION["panier"];
+// 	$sql="SELECT idtoi, titre, artiste, prix_ht FROM toiles WHERE idtoi = '".$_POST['id']."'";
+// 	$results=mysql_query($sql);
+// 	$supprime = mysql_fetch_assoc($results);
+// 	$_SESSION['supprime']=array('qte'=>$_POST['ajout'], 'idtoi'=>$supprime['idtoi'], 'titre'=>$supprime['titre'], 'artiste'=>$supprime['artiste'], 'prix'=>$supprime['prix_ht']);
+// 	$paniers[]=$_SESSION['supprime'];
+// 	$_SESSION['supprime']=$supprime;	
+			
+// 			unset($supprime);
+// 			echo'votre article est supprimé';
+			
+// 	$paniers=$_SESSION["panier"];print_r($_SESSION["panier"]);
+// 	*/
+// if(ctype_digit ($_POST['ajout']) && ($_POST['ajout']==0) AND isset($_POST['id'])){	$sql="SELECT * FROM toiles WHERE idtoi = '".$_POST['id']."'";
+// 	$results=mysql_query($sql);
+// 	$produit = mysql_fetch_array($results);
+// 		$ligne_panier=array('qte'=>$_POST['ajout'], 'idtoi'=>$produit['idtoi'], 'titre'=>$produit['titre'], 'artiste'=>$produit['artiste'],'prix_ht'=>$produit['prix_ht']);	
+// 	$panier[]=$ligne_panier;print_r($ligne_panier);
+			
+// 		IF(ISSET($_SESSION['panier'])){
+// 		$panier=$_SESSION['panier'];	
+// 		}
+	
+	
+// 	unset($ligne_panier);
+// 	$_SESSION['panier']=$panier;print_r($panier);
+	
+// 	echo 
+// 	'Votre article a bien été supprimé de votre panier<br />
+// 		<a href="affichage_1.php" >Ajoutez des articles à votre panier</a> |
+// 		 <a href="panier.php" >Validez votre panier</a>';
+// 		}	
+			
+
+					
+// 	include_once('gen/pied.php');	
+    
+//     Heu je suis pas sure de la structure ton panier alors je vais expliquer avec un panier à moi
+
+// Soit l'article d'id 1 prix 5€
+// $_SESSION['panier'][1]['prix']=5.00;
+// $_SESSION['panier'][1]['quantité']=1;
+
+// J'utilise mon id produit unique comme clef de mon tableau ensuite si je veux supprimer l'article 1
+
+// unset($_SESSION['panier'][1]);
+	?>
