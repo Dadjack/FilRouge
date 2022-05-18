@@ -20,7 +20,7 @@ class VisitorController extends MainController{
         $data_page = [
             "page_description" => "Description de la page d'accueil",
             "page_title" => "Titre de la page d'accueil",
-            "page_css" => ['style.css'],
+            // "page_css" => ['style.css'],
             "page_css" => ['home.css'],
             "view" => "views/Visitor/home.view.php",
             "template" => "views/common/template.php"

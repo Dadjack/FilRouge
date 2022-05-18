@@ -1,10 +1,8 @@
 body {
     padding: 0;
     margin: 0;
-    /* background-image:url(../images/style/fond.jpg); */
     background-image:url(../images/style/home.jpg);
-    /* background-image: linear-gradient(green,yellow,red); */
-    background-attachment:fixed;
+    background-size: cover;
     /* background-repeat: inherit; */
     font-family: Georgia, 'Times New Roman', Times, serif;
     /* color: red; */
@@ -12,3 +10,7 @@ body {
     padding: 0;
 }
 
+h1{
+    text-align: center;
+    color: black;
+}

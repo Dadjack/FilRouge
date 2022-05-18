@@ -1,13 +1,9 @@
 body {
     padding: 0;
     margin: 0;
-    /* background-image:url(../images/style/fond.jpg); */
     background-image:url(../images/style/white.png);
-    /* background-image: linear-gradient(green,yellow,red); */
-    background-attachment:fixed;
-    /* background-repeat: inherit; */
+    background-size: cover;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    /* color: red; */
     margin:0;
     padding: 0;
 }
@@ -29,11 +25,6 @@ h1,h2{
     border: solid black;
 }
 
-/* .navbar{
-    background-image:url(../images/style/design12.gif);
-    background-image: linear-gradient(green,yellow,red);
-} */
-
 #btnChangeFirstName #svg {
     display: flex;
     justify-content: center;
@@ -44,6 +35,6 @@ footer{
     bottom: 0;
 }
 
-/* img{
+img{
     border: solid black;
-} */
+}
