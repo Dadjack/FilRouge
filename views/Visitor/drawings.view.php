@@ -10,8 +10,8 @@
 
 <table class="table text-center">
         <tr class="table-dark">
-                <th>Nom du produit</th>
                 <th>Image Du Produit</th>
+                <th>Nom du produit</th>
                 <th>Description Du Produit</th>
                 <th>Quantité Du Produit</th>
                 <th>Prix Du Produit</th>
@@ -25,10 +25,7 @@
                 <td class="align-middle"><?= $products[$i]->getProductName(); ?></td>
                 <td class="align-middle"><?= $products[$i]->getProductDescription();  ?></a></td>
                 <td class="align-middle"><?= $products[$i]->getProductQuantity(); ?></td>
-                <td class="align-middle"><?= $products[$i]->getProductPrice()?></td>
-                <?php if(Security::isConnect()) : ?>
-                        <td class="align-middle"><a href="<?= URL ?>userProducts/c/<?= $products[$i]->getIdProduct(); ?>"class="btn btn-success">AJOUTER AU PANIER</a></td>     
-                <?php endif; ?>             
+                <td class="align-middle"><?= $products[$i]->getProductPrice()?></td>         
         </tr>
                 <!--<> JE FERME MA BOUCLE FOR <>--> 
         <?php endfor; ?>
