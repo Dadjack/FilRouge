@@ -120,27 +120,31 @@
         </form>
     </div>
 </div>
-<div>
-    <!-- <button id="btnAddProduct" class="btn btn-success d-block"></button> -->
-    <a href="<?= URL ?>userProducts/ap" class="btn btn-success">AJOUTER UN PRODUIT</a>
-</div>
-<div>
-    <a href="<?= URL ?>userProducts" class="btn btn-success">VOIR MES PRODUITS</a>
-</div>
+<table class="table border-dark d-flex justify-content-center">
+    <!-- AJOUTER UN PRODUIT -->
+    <td class="align-middle"><a href="<?= URL ?>userProducts/ap" class="btn btn-success border-dark">AJOUTER UN PRODUIT</a></td>
+    <!-- VOIR MES PRODUITS -->
+    <td class="align-middle"><a href="<?= URL ?>userProducts" class="btn btn-success border-dark">MES PRODUITS</a></td>
+</table>
+<table class="table border-dark  d-flex justify-content-center">    
+    <!-- CHANGER L'ADRESSE -->
+    <td class="align-middle"><a href="<?= URL ?>userAddress" class="btn btn-warning border-dark">CHANGER MON ADRESSE</a></td>
+    </table>
+    <table class="table border-dark d-flex justify-content-center">    
+    <!-- CHANGER LA VILLE -->
+    <td class="align-middle"><a href="<?= URL ?>userTown" class="btn btn-warning border-dark">CHANGER LA VILLE</a></td>
+    </table>
+<table class="table border-dark d-flex justify-content-center ">
+    <!--<> CHANGER LE MOT DE PASSE --<>-->
+    <td class="align-middle"><a href="<?= URL ?>account/changePassword" class="btn btn-warning border-dark">CHANGER LE MOT DE PASSE</a>
+    <button id="btnDelAccount" class="btn btn-danger border-dark">SUPPRIMER SON COMPTE</button>
 
-<div>
-    <a href="<?= URL ?>userAddress" class="btn btn-warning">MON ADRESSE</a>
-</div>
-
-    <!--<> CHANGE PASSWORD --<>-->
-<div>
-    <a href="<?= URL ?>account/changePassword" class="btn btn-warning">CHANGER LE MOT DE PASSE</a>
-    <button id="btnDelAccount" class="btn btn-danger d-block">SUPPRIMER SON COMPTE</button>
-</div>
-<div id="deleteAccount" class="d-none m-2">
-    <div class="alert alert-danger">
+    <!-- SUPPRESSION DU COMPTE -->
+    <div id="deleteAccount" class="d-none m-2">
+        <div class="alert alert-danger">
             VEUILLEZ CONFIRMER LA SUPPRESSION DU COMPTE.
             <br />
-        <a href="<?= URL ?>account/deleteAccount" class="btn btn-danger">Je souhaite supprimer mon compte définitivement !</a>
+            <a href="<?= URL ?>account/deleteAccount" class="btn btn-danger">Je souhaite supprimer mon compte définitivement !</a>
+        </div>
     </div>
-</div>
+</table>

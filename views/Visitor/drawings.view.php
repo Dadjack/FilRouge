@@ -1,13 +1,3 @@
-<?php 
-
-//---<> PAGE D'AFFICHAGE DES PRODUITS <>---//
-
-?>
-
-<h1>Bienvenue Sur NoTre Page De Produits</h1>
-
-<?php ?>
-
 <table class="table text-center">
         <tr class="table-dark">
                 <th>Image Du Produit</th>

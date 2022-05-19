@@ -12,6 +12,7 @@ require_once "controllers/Security.class.php";
 require_once "controllers/Visitor/Visitor.controller.php";
 require_once "controllers/User/User.controller.php";
 require_once "controllers/Address/Address.controller.php";
+require_once "controllers/Town/Town.controller.php";
 require_once "controllers/Product/Product.Controller.php";
 require_once "controllers/Cart/Cart.Controller.php";
 require_once "controllers/Image/Image.Controller.php";
@@ -19,6 +20,7 @@ require_once "controllers/Administrator/Administrator.controller.php";
 $visitorController = new VisitorController;
 $userController = new UserController;
 $addressController = new AddressController;
+$townController = new TownController;
 $productController = new ProductController;
 $cartController = new CartController;
 $imageController = new ImageController;
@@ -143,6 +145,19 @@ try{//---<> JE VERIFIE EST CE QUE J'AI L'INFORMATION $_GET DE PAGE <>---//
                         $streetName = Security::secureHTML($_POST['street_name']);
                         $additionalAdress = Security::secureHTML($_POST['additional_address']);
                         $addressController->addAddressValidation($streetNumber,$streetName,$additionalAdress);
+                    }
+                } else {
+                    throw new Exception ("La page n'existe pas"); 
+                }
+            break;
+            case "userTown" : //---<> SECTION ADRESSE UTILISATEUR <>---//
+                if(empty($url[1])){
+                    $townController->addTown();//---<> AJOUT ADRESSE UTILISATEUR <>---//
+                } else if($url[1] === "av") {
+                    if(!empty($_POST['name_town']) && !empty($_POST['postal_code'])){
+                        $nameTown = Security::secureHTML($_POST['name_town']);
+                        $postalCode = Security::secureHTML($_POST['postal_code']);;
+                        $townController->addTownValidation($nameTown,$postalCode);
                     }
                 } else {
                     throw new Exception ("La page n'existe pas"); 
