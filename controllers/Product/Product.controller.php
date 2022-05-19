@@ -233,6 +233,6 @@ class ProductController extends MainController{
         } catch (Exception $e) {
             Toolbox::addAlertMessage("La modification du produit a échoué", Toolbox::COULEUR_ROUGE);
         }
-        header('Location: ' . URL . "userProducts");
+        // header('Location: ' . URL . "userProducts");
     }
 }

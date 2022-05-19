@@ -191,26 +191,26 @@ class ProductManager extends MainManager{
 
     //---<> MODIFICATION DU PRODUIT EN BDD <>---//
 
-    public function changeProductBdd($idProduct,$product_name,$product_image,$product_description,$product_quantity,$product_price){
+    public function changeProductBdd($idProduct,$productName,$productImage,$productDescription,$productQuantity,$productPrice){
         $req = "UPDATE products 
         SET product_name = :product_name, product_image = :product_image, product_description = :product_description,
-        product_quantity = :product_quantity, product_price = :product_price WHERE idProduct = :idProduct";
+        product_quantity = :product_quantity, product_price = :product_price, is_available = 1 WHERE idProduct = :idProduct";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":idProduct",$idProduct,PDO::PARAM_INT);
-        $stmt->bindValue(":product_name",$product_name,PDO::PARAM_STR);
-        $stmt->bindValue(":product_image",$product_image,PDO::PARAM_STR);
-        $stmt->bindValue(":product_description",$product_description,PDO::PARAM_STR);
-        $stmt->bindValue(":product_quantity",$product_quantity,PDO::PARAM_INT);
-        $stmt->bindValue(":product_price",$product_price,PDO::PARAM_INT);
+        $stmt->bindValue(":product_name",$productName,PDO::PARAM_STR);
+        $stmt->bindValue(":product_image",$productImage,PDO::PARAM_STR);
+        $stmt->bindValue(":product_description",$productDescription,PDO::PARAM_STR);
+        $stmt->bindValue(":product_quantity",$productQuantity,PDO::PARAM_INT);
+        $stmt->bindValue(":product_price",$productPrice,PDO::PARAM_INT);
         $result = $stmt->execute();
         $stmt->closeCursor();
-
-        if($result > 0){
-            $this->getProductById($idProduct)->setProductName($product_name);
-            $this->getProductById($idProduct)->setProductImage($product_image);
-            $this->getProductById($idProduct)->setProductDescription($product_description);
-            $this->getProductById($idProduct)->setProductQuantity($product_quantity);
-            $this->getProductById($idProduct)->setProductPrice($product_price);
+        var_dump($result);
+        if(is_countable($result) && count($result) > 0){
+            $this->getProductById($idProduct)->setProductName($productName);
+            $this->getProductById($idProduct)->setProductImage($productImage);
+            $this->getProductById($idProduct)->setProductDescription($productDescription);
+            $this->getProductById($idProduct)->setProductQuantity($productQuantity);
+            $this->getProductById($idProduct)->setProductPrice($productPrice);
         }
     }
 }
