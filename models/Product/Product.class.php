@@ -15,13 +15,14 @@ class Product{
         //public static $produits;
         //---<> L'ATTRIBUT STATIC DISPARAIT SUITE A LA MISE EN PLACE DU GESTIONNAIRE <>---//
 
-    public function __construct($idProduct,$productName,$productImage,$productDescription,$productQuantity,$productPrice,$idCategory){
+    public function __construct($idProduct,$productName,$productImage,$productDescription,$productQuantity,$productPrice,$isAvailable,$idCategory){
         $this->idProduct = $idProduct;
         $this->productName = $productName;
         $this->productImage = $productImage;
         $this->productDescription = $productDescription;
         $this->productQuantity = $productQuantity;
         $this->productPrice = $productPrice;
+        $this->isAvailable = $isAvailable;
         $this->idCategory = $idCategory;
             //---<> POUR REMPLIR LE TABLEAU STATIC NOUS LE FERONS DIRECTEMENT DANS LE <>---//
             //---<> CONSTRUCTEUR EN FAISANT APPEL A LATTRIBUT PAR L'INTERMEDIAIRE DU MOT CLE SELF :: <>---//

@@ -6,7 +6,7 @@ require_once "Product.class.php";
 
 //---<> ON VA ETENDRE LA CLASSE MODEL <>---//
 class ProductManager extends MainManager{
-        private $products;  //---<> TABLEAU DE PRODUITS <>---//
+        private $products = array();  //---<> TABLEAU DE PRODUITS <>---//
 
         
     public function addProduct($product){
@@ -33,6 +33,7 @@ class ProductManager extends MainManager{
                             $product['product_description'],
                             $product['product_quantity'],
                             $product['product_price'],
+                            $product['is_available'],
                             $product['idCategory']);
             $this->addProduct($p);
         }
@@ -51,6 +52,7 @@ class ProductManager extends MainManager{
                             $product['product_description'],
                             $product['product_quantity'],
                             $product['product_price'],
+                            $product['is_available'],
                             $product['idCategory']);
             $this->addProduct($p);
         }
@@ -69,6 +71,7 @@ class ProductManager extends MainManager{
                             $product['product_description'],
                             $product['product_quantity'],
                             $product['product_price'],
+                            $product['is_available'],
                             $product['idCategory']);
             $this->addProduct($p);
         }
@@ -87,6 +90,7 @@ class ProductManager extends MainManager{
                             $product['product_description'],
                             $product['product_quantity'],
                             $product['product_price'],
+                            $product['is_available'],
                             $product['idCategory']);
             $this->addProduct($p);
         }
@@ -126,6 +130,7 @@ class ProductManager extends MainManager{
                             $product['product_description'],
                             $product['product_quantity'],
                             $product['product_price'],
+                            $product['is_available'],
                             $product['idCategory']);
             $this->addProduct($p);
         }
@@ -191,10 +196,11 @@ class ProductManager extends MainManager{
 
     //---<> MODIFICATION DU PRODUIT EN BDD <>---//
 
-    public function changeProductBdd($idProduct,$productName,$productImage,$productDescription,$productQuantity,$productPrice){
+    public function changeProductBdd($idProduct,$productName,$productImage,$productDescription,$productQuantity,$productPrice,$isAvailable){
         $req = "UPDATE products 
         SET product_name = :product_name, product_image = :product_image, product_description = :product_description,
-        product_quantity = :product_quantity, product_price = :product_price, is_available = 1 WHERE idProduct = :idProduct";
+        product_quantity = :product_quantity, product_price = :product_price , is_available = :is_available
+        WHERE idProduct = :idProduct";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":idProduct",$idProduct,PDO::PARAM_INT);
         $stmt->bindValue(":product_name",$productName,PDO::PARAM_STR);
@@ -202,21 +208,17 @@ class ProductManager extends MainManager{
         $stmt->bindValue(":product_description",$productDescription,PDO::PARAM_STR);
         $stmt->bindValue(":product_quantity",$productQuantity,PDO::PARAM_INT);
         $stmt->bindValue(":product_price",$productPrice,PDO::PARAM_INT);
+        $stmt->bindValue(":is_available",$isAvailable,PDO::PARAM_INT);
         $result = $stmt->execute();
         $stmt->closeCursor();
         var_dump($result);
-        if(is_countable($result) && count($result) > 0){
-            $this->getProductById($idProduct)->setProductName($productName);
-            $this->getProductById($idProduct)->setProductImage($productImage);
-            $this->getProductById($idProduct)->setProductDescription($productDescription);
-            $this->getProductById($idProduct)->setProductQuantity($productQuantity);
-            $this->getProductById($idProduct)->setProductPrice($productPrice);
-        }
+        // if($result > 0){
+        //     $this->getProductById($idProduct)->setProductName($productName);
+        //     $this->getProductById($idProduct)->setProductImage($productImage);
+        //     $this->getProductById($idProduct)->setProductDescription($productDescription);
+        //     $this->getProductById($idProduct)->setProductQuantity($productQuantity);
+        //     $this->getProductById($idProduct)->setProductPrice($productPrice);
+        //     $this->getProductById($idProduct)->setIsAvailable($isAvailable);
+        // }
     }
 }
-
-//---<> AFFICHAGE PRODUIT PANIER <>---//
-
-
-    
-

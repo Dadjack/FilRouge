@@ -215,24 +215,22 @@ class ProductController extends MainController{
     }
 
     //---<> VALIDATION MODIFICATION DU PRODUIT <>---//
-
     public function changeProductValidation(){
-        try {
-            $imageToDelete = $this->productManager->getProductById($_POST['identifiant'])->getProductName();
+        //echo "test";
+            $imageToDelete = $this->productManager->getProductById($_POST['identifiant'])->getProductImage();
             $file = $_FILES['product_image'];
-
+            //echo "test";
             if ($file['size'] > 0) {
-                unlink("public/images/" . $imageToDelete);
-                $repertoire = "public/images/";
-                $nomImageToChange = Toolbox::addImage($file, $repertoire); //---<> UPLOAD DE L'IMAGE <>---//
+                unlink("public/images/ImgM/".$imageToDelete);
+                $directory = "public/images/ImgM/";
+                $nomImageToChange = Toolbox::addImage($file, $directory); //---<> UPLOAD DE L'IMAGE <>---//
+                echo "test";
             } else {
                 $nomImageToChange = $imageToDelete; //---<> SI L'UTILISATEUR NE CHANGE PAS L'IMAGE <>---//
             }
-            $this->productManager->changeProductBdd($_POST['idProduct'], $_POST['product_name'], $nomImageToChange, $_POST['product_description'], $_POST['product_quantity'], $_POST['product_price']);
-            Toolbox::addAlertMessage("La modification du produit a été éffectué", Toolbox::COULEUR_VERTE);
-        } catch (Exception $e) {
-            Toolbox::addAlertMessage("La modification du produit a échoué", Toolbox::COULEUR_ROUGE);
-        }
-        // header('Location: ' . URL . "userProducts");
+            $this->productManager->changeProductBdd($_POST['identifiant'], $_POST['product_name'], $nomImageToChange, $_POST['product_description'], $_POST['product_quantity'], $_POST['product_price'], $_POST['is_available']);
+            // echo "test";
+            Toolbox::addAlertMessage("La modification a été éffectuée", Toolbox::COULEUR_VERTE);
+        header('Location: ' . URL . "userProducts");
     }
 }
