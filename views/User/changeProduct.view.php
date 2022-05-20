@@ -21,13 +21,6 @@
         <label for="product_price">Prix : </label>
         <input type="number" class="form-control" id="product_price" name="product_price" value="<?= $product->getProductPrice() ?>">
     </div>
-    <div class="form-group">
-        <label for="is_available">Disponible : </label> 
-        <select name="is_available">
-            <option value="1">Oui</option>
-            <option value="0">Non</option>
-        </select>
-    </div>
     <input type="hidden" name="identifiant" value="<?= $product->getIdProduct(); ?>">
     <button type="submit" class="btn btn-primary">Valider</button>
 </form>

@@ -216,21 +216,22 @@ class ProductController extends MainController{
 
     //---<> VALIDATION MODIFICATION DU PRODUIT <>---//
     public function changeProductValidation(){
-        //echo "test";
-            $imageToDelete = $this->productManager->getProductById($_POST['identifiant'])->getProductImage();
-            $file = $_FILES['product_image'];
-            //echo "test";
-            if ($file['size'] > 0) {
-                unlink("public/images/ImgM/".$imageToDelete);
-                $directory = "public/images/ImgM/";
-                $nomImageToChange = Toolbox::addImage($file, $directory); //---<> UPLOAD DE L'IMAGE <>---//
-                echo "test";
-            } else {
-                $nomImageToChange = $imageToDelete; //---<> SI L'UTILISATEUR NE CHANGE PAS L'IMAGE <>---//
-            }
-            $this->productManager->changeProductBdd($_POST['identifiant'], $_POST['product_name'], $nomImageToChange, $_POST['product_description'], $_POST['product_quantity'], $_POST['product_price'], $_POST['is_available']);
-            // echo "test";
-            Toolbox::addAlertMessage("La modification a été éffectuée", Toolbox::COULEUR_VERTE);
+        $this->productManager->loadingProducts();
+    //---<> ON RECUPERE L'IMAGE DU PRODUIT QUE L'ON VEUT MODIFIER <>---//
+        $actualImage = $this->productManager->getProductById($_POST['identifiant'])->getProductImage();
+        $file = $_FILES['product_image'];
+    //---<> ON VERIFIE SI L'UTILISATEUR A RENSEIGNE DANS L'INPUT FILE UNE NOUVELLE IMAGE <>---//
+        if ($file['size'] > 0) {
+    //---<> SI C'EST LE CAS ON SUPPRIME L'IMAGE QU'IL Y A DANS NOTRE REPERTOIRE POUR Y METTRE LA NOUVELLE <>---//
+            unlink("public/images/ImgM/".$actualImage);
+            $directory = "public/images/ImgM/";
+            $nameImageToAdd = Toolbox::addImage($file, $directory); //---<> UPLOAD DE L'IMAGE <>---//
+        } else {
+    //---<> SINON ON RECUPERE DANS LA VARIABLE $nomImageToAdd L'IMAGE ACTUELLE <>---//
+            $nameImageToAdd = $actualImage;
+        }
+        $this->productManager->changeProductBdd($_POST['identifiant'], $_POST['product_name'], $nameImageToAdd, $_POST['product_description'], $_POST['product_quantity'], $_POST['product_price']);
+        Toolbox::addAlertMessage("La modification a été éffectuée", Toolbox::COULEUR_VERTE);
         header('Location: ' . URL . "userProducts");
     }
 }

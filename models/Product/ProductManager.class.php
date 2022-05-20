@@ -196,10 +196,10 @@ class ProductManager extends MainManager{
 
     //---<> MODIFICATION DU PRODUIT EN BDD <>---//
 
-    public function changeProductBdd($idProduct,$productName,$productImage,$productDescription,$productQuantity,$productPrice,$isAvailable){
+    public function changeProductBdd($idProduct,$productName,$productImage,$productDescription,$productQuantity,$productPrice){
         $req = "UPDATE products 
         SET product_name = :product_name, product_image = :product_image, product_description = :product_description,
-        product_quantity = :product_quantity, product_price = :product_price , is_available = :is_available
+        product_quantity = :product_quantity, product_price = :product_price
         WHERE idProduct = :idProduct";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":idProduct",$idProduct,PDO::PARAM_INT);
@@ -208,17 +208,15 @@ class ProductManager extends MainManager{
         $stmt->bindValue(":product_description",$productDescription,PDO::PARAM_STR);
         $stmt->bindValue(":product_quantity",$productQuantity,PDO::PARAM_INT);
         $stmt->bindValue(":product_price",$productPrice,PDO::PARAM_INT);
-        $stmt->bindValue(":is_available",$isAvailable,PDO::PARAM_INT);
         $result = $stmt->execute();
         $stmt->closeCursor();
         var_dump($result);
-        // if($result > 0){
-        //     $this->getProductById($idProduct)->setProductName($productName);
-        //     $this->getProductById($idProduct)->setProductImage($productImage);
-        //     $this->getProductById($idProduct)->setProductDescription($productDescription);
-        //     $this->getProductById($idProduct)->setProductQuantity($productQuantity);
-        //     $this->getProductById($idProduct)->setProductPrice($productPrice);
-        //     $this->getProductById($idProduct)->setIsAvailable($isAvailable);
-        // }
+        if($result > 0){
+            $this->getProductById($idProduct)->setProductName($productName);
+            $this->getProductById($idProduct)->setProductImage($productImage);
+            $this->getProductById($idProduct)->setProductDescription($productDescription);
+            $this->getProductById($idProduct)->setProductQuantity($productQuantity);
+            $this->getProductById($idProduct)->setProductPrice($productPrice);
+        }
     }
 }
