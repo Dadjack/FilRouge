@@ -20,24 +20,23 @@ class ProductController extends MainController{
 
     //---<> VOIR TOUS LES PRODUITS <>---//
 
-    public function showProducts(){
-        $this->productManager->loadingProducts();
-        $products = $this->productManager->getProducts();
-        $data_page = [
-            "page_description" => "Page des produits",
-            "page_title" => "Page des produits",
-            "products" => $products,
-            "page_css" => ['products.css'],
-            "view" => "views/Visitor/products.view.php",
-            "template" => "views/common/template.php"
-        ];
-        $this->generatePage($data_page);
-        //unset($_SESSION['alert']);//---<> C'EST UNE ACTION DE PILOTAGE ON LA MET DANS LE CONTROLEUR <>---//
-        var_dump($products);
-    }
+    // public function showProducts(){
+    //     $this->productManager->loadingProducts();
+    //     $products = $this->productManager->getProducts();
+    //     $data_page = [
+    //         "page_description" => "Page des produits",
+    //         "page_title" => "Page des produits",
+    //         "products" => $products,
+    //         "page_css" => ['products.css'],
+    //         "view" => "views/Visitor/products.view.php",
+    //         "template" => "views/common/template.php"
+    //     ];
+    //     $this->generatePage($data_page);
+    //     //unset($_SESSION['alert']);//---<> C'EST UNE ACTION DE PILOTAGE ON LA MET DANS LE CONTROLEUR <>---//
+    //     var_dump($products);
+    // }
 
     //---<> VOIR UN PRODUIT <>---//
-
     public function showProduct($id){
         $this->productManager->loadingProducts();
         $product = $this->productManager->getProductById($id);
@@ -54,7 +53,6 @@ class ProductController extends MainController{
     }
 
     //---<> VOIR TOUS LES MEUBLES <>---//
-
     public function showProductsFurnitures(){
         $this->productManager->loadingProductsFurnitures();
         $products = $this->productManager->getProducts();
@@ -72,7 +70,6 @@ class ProductController extends MainController{
     }
 
     //---<> VOIR TOUS LES DESSINS <>---//
-
     public function showProductsDrawings(){
         $this->productManager->loadingProductsDrawings();
         $products = $this->productManager->getProducts();
@@ -90,7 +87,6 @@ class ProductController extends MainController{
     }
 
     //---<> VOIR TOUS LES GALETS <>---//
-
     public function showProductsPeebles(){
         $this->productManager->loadingProductsPeebles();
         $products = $this->productManager->getProducts();
@@ -107,31 +103,11 @@ class ProductController extends MainController{
         var_dump($products);
     }
 
-    
-    //---<> VOIR LES AUTRES PRODUITS <>---//
-
-    // public function showOtherProducts(){
-    //     $this->productManager->loadingOtherProducts();
-    //     $products = $this->productManager->getProducts();
-    //     $data_page = [
-    //         "page_description" => "Page des produits",
-    //         "page_title" => "Page des produits",
-    //         "products" => $products,
-    //         "view" => "views/Visitor/peebles.view.php",
-    //         "template" => "views/common/template.php"
-    //     ];
-    //     $this->generatePage($data_page);
-    //     //unset($_SESSION['alert']);//---<> C'EST UNE ACTION DE PILOTAGE ON LA MET DANS LE CONTROLEUR <>---//
-    //     var_dump($products);
-    // }
-
-
     //---<>---------------------<>---//
     //---<> SECTION UTILISATEUR <>---//
     //---<>---------------------<>---//
 
     //---<> VOIR LES PRODUITS DE L'UTILISATEUR <>---//
-
     public function showUserProducts(){
         $this->productManager->loadingProductsUser();
         $products = $this->productManager->getProducts();
@@ -148,7 +124,6 @@ class ProductController extends MainController{
     }
 
     //---<> VOIR UN PRODUIT <>---//
-
     public function showUserProduct($id){
         $this->productManager->loadingProducts();
         $product = $this->productManager->getProductById($id);
@@ -168,7 +143,6 @@ class ProductController extends MainController{
     }
 
     //---<> AJOUTER UN PRODUIT <>---//
-
     public function addProduct(){
         $data_page = [
             "page_description" => "Page d'ajout de produit",
@@ -180,7 +154,6 @@ class ProductController extends MainController{
     }
 
     //---<> VALIDATION D'AJOUT DU PRODUIT <>---//
-
     public function addProductValidation(){
         $file = $_FILES['product_image'];
         $directory = "public/images/ImgM/";
@@ -190,7 +163,6 @@ class ProductController extends MainController{
     }
 
     //---<> SUPPRIMER UN PRODUIT <>---//
-
     public function deleteProduct($id){
         $this->productManager->loadingProducts();
         $nameImage = $this->productManager->getProductById($id)->getProductImage();
@@ -200,7 +172,6 @@ class ProductController extends MainController{
     }
 
     //---<> MODIFIER UN PRODUIT <>---//
-
     public function changeProduct($id){
         $this->productManager->loadingProducts();
         $product = $this->productManager->getProductById($id);

@@ -5,13 +5,7 @@ class Cart{
     private $cartHourDate;
     private $idUser;
 
-    public function __construct($idCart,$cartHourDate,$idUser){
-        // if(!isset($_SESSION)){
-        //     session_start();
-        // }
-        if(!isset($_SESSION['cart'])){
-            $_SESSION['cart'] = array();
-        }    
+    public function __construct($idCart,$cartHourDate,$idUser){ 
         $this->idCart = $idCart;
         $this->cartHourDate = $cartHourDate;
         $this->idUser = $idUser;

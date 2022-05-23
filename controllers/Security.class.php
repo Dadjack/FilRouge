@@ -1,9 +1,9 @@
 <?php
 
-//---<> EN STATIC POUR QUE CE SOIT ACCESSIBLE DIRECTEMENT DEPUIS LA CLASSE SECURITE <>---//
 abstract class Security {
     public const COOKIE_NAME="timers";
 
+    //---<> EN STATIC POUR QUE CE SOIT ACCESSIBLE DIRECTEMENT DEPUIS LA CLASSE SECURITE <>---//
     public static function secureHTML($chaine){
         return htmlspecialchars(strip_tags(trim(($chaine))));
     }

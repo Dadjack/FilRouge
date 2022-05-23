@@ -14,11 +14,14 @@ class UserController extends MainController{
     }
 
     //---<> VALIDATION DU LOGIN <>---//
-
     public function validationLogin($login,$password,$idUser){
+        //---<> ON TEST SI LA COMBINAISON LOGIN/MOT DE PASSE EST VALIDE <>---// 
         if($this->userManager->isValidCombination($login,$password)){
+            //---<> ON TEST SI L'UTILISATEUR A VALIDE SON COMPTE <>---// 
             if($this->userManager->isAccountActive($login)){
                 Toolbox::addAlertMessage("Bon retour sur le site " .$login. "!", Toolbox::COULEUR_VERTE);
+                //---<> EN VARIABLE DE SESSION JE SAUVEGARDE UN TABLEAU QUE JE NOMME PROFIL <>---//
+                //---<> ET QUI CONTIENT UNE CLE LOGIN AVEC LA VALEUR LOGIN <>---//
                 $_SESSION['profile'] = [
                     "login" => $login,
                     "idUser" => $idUser
@@ -26,6 +29,7 @@ class UserController extends MainController{
                 Security::generateCookieConnexion();
                 header('Location: '.URL."account/profile");
             } else {
+                //---<> MESSAGE D'ALERTE AVEC LE LOGIN RESEIGNE DANS LE FORMULAIRE <>---//
                 $msg = "Le compte " .$login. " n'a pas été activé par mail. ";
                 $msg .= "<a href='renvoyerMailValidation/".$login."'>Renvoyer le mail de validation</a>";
                 Toolbox::addAlertMessage($msg, Toolbox::COULEUR_ROUGE);
@@ -39,7 +43,6 @@ class UserController extends MainController{
     }
 
     //---<> PROFIL <>---//
-
     public function profile(){
         $datas = $this->userManager->getUserInformations($_SESSION['profile']['login']);
         $dataAddress = $this->addressManager->getAddressInformations();

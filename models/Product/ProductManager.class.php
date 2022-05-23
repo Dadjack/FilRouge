@@ -33,7 +33,6 @@ class ProductManager extends MainManager{
                             $product['product_description'],
                             $product['product_quantity'],
                             $product['product_price'],
-                            $product['is_available'],
                             $product['idCategory']);
             $this->addProduct($p);
         }
@@ -52,7 +51,6 @@ class ProductManager extends MainManager{
                             $product['product_description'],
                             $product['product_quantity'],
                             $product['product_price'],
-                            $product['is_available'],
                             $product['idCategory']);
             $this->addProduct($p);
         }
@@ -71,7 +69,6 @@ class ProductManager extends MainManager{
                             $product['product_description'],
                             $product['product_quantity'],
                             $product['product_price'],
-                            $product['is_available'],
                             $product['idCategory']);
             $this->addProduct($p);
         }
@@ -90,33 +87,12 @@ class ProductManager extends MainManager{
                             $product['product_description'],
                             $product['product_quantity'],
                             $product['product_price'],
-                            $product['is_available'],
                             $product['idCategory']);
             $this->addProduct($p);
         }
     }
 
-    // //---<> CHARGEMENT DES AUTRES PRODUITS <>---//
-
-    // public function loadingOtherProducts(){              
-    //     $req = $this->getBdd()->prepare("SELECT * FROM products WHERE idCategory = 4");
-    //     $req->execute();
-    //     $myProducts = $req->fetchAll(PDO::FETCH_ASSOC);
-    //     $req->closeCursor();
-    //     foreach($myProducts as $product){
-    //         $p = new Product($product['idProduct'],
-    //                         $product['product_name'],
-    //                         $product['product_image'],
-    //                         $product['product_description'],
-    //                         $product['product_quantity'],
-    //                         $product['product_price'],
-    //                         $product['idCategory']);
-    //         $this->addProduct($p);
-    //     }
-    // }
-
     //---<> CHARGEMENT DES PRODUITS UTILISATEURS <>---//
-    //$req = $this->getBdd()->prepare("SELECT * FROM products INNER JOIN users ON products.idUser = users.idUser" );
     public function loadingProductsUser(){
         $idUser =  $_SESSION['profile']['idUser'];             
         $req = $this->getBdd()->prepare("SELECT * FROM products WHERE idUser = $idUser" );
@@ -130,14 +106,12 @@ class ProductManager extends MainManager{
                             $product['product_description'],
                             $product['product_quantity'],
                             $product['product_price'],
-                            $product['is_available'],
                             $product['idCategory']);
             $this->addProduct($p);
         }
     }
     
     //---<> RECUPERATION D'UN SEUL PRODUIT <>---//
-
     public function getProductById($id){
         for($i=0; $i < count($this->products); $i++){
             if($this->products[$i]->getIdProduct() === $id){
@@ -148,7 +122,6 @@ class ProductManager extends MainManager{
     }
 
     //---<> AJOUT DU PRODUIT EN BDD <>---//
-
     public function addProductBdd($productName,$productImage,$productDescription,$productQuantity,$productPrice,$idCategory){
         $idCategory = $_POST['idCategory'];  
         $idUser = $_SESSION['profile']['idUser'];
@@ -178,7 +151,6 @@ class ProductManager extends MainManager{
     }
 
     //---<> SUPPRESSION DU PRODUIT EN BDD <>---//
-
     public function deleteProductBdd($id){
         $req = "DELETE FROM products WHERE idProduct = :idProduct";
         $stmt = $this->getBdd()->prepare($req);
@@ -195,7 +167,6 @@ class ProductManager extends MainManager{
     }
 
     //---<> MODIFICATION DU PRODUIT EN BDD <>---//
-
     public function changeProductBdd($idProduct,$productName,$productImage,$productDescription,$productQuantity,$productPrice){
         $req = "UPDATE products 
         SET product_name = :product_name, product_image = :product_image, product_description = :product_description,

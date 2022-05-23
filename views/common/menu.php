@@ -10,12 +10,6 @@
         </li>
         <!--<> ON VERIFIE SI L'UTILISATEUR EST CONNECTE POUR L'AFFICHAGE DES PAGES <>--->
         <?php if(!Security::isConnect()) : ?>
-          <li class="nav-item ">
-            <a class="nav-link" aria-current="page" href="<?= URL; ?>login">Se connecter</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="<?= URL; ?>createAccount">Créer un compte</a>
-          </li>
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="<?= URL; ?>furnitures">Meubles</a>
           </li>
@@ -25,8 +19,11 @@
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="<?= URL; ?>peebles">Galets</a>
           </li>
+          <li class="nav-item ">
+            <a class="nav-link" aria-current="page" href="<?= URL; ?>login">Se connecter</a>
+          </li>
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="<?= URL; ?>products">Nos Produits</a>
+            <a class="nav-link" aria-current="page" href="<?= URL; ?>createAccount">Créer un compte</a>
           </li>
         <?php else : ?>
             <li class="nav-item">

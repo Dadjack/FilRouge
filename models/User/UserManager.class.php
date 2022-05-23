@@ -7,21 +7,25 @@ require_once "User.class.php";
 class UserManager extends MainManager{
     private $users;
     
+    //---<> ON RECUPERE LE MOT DE PASSE EN BDD <>---//
     private function getUserPassword($login){
+        //---<> ON SECURISE L'INFORMATION TRANSMISE A LA FONCTION AVEC BINDVALUE <>---//
         $req = "SELECT user_password FROM users WHERE user_login = :user_login";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":user_login",$login,PDO::PARAM_STR);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $stmt->closeCursor();
+        $stmt->closeCursor();//---<> ON INDIQUE ICI QU'ON TERMINE LA REQUÊTE <>---//
         return $result['user_password'];
     }
 
     public function isValidCombination($login,$password){
-        $passBdd = $this->getUserPassword($login);
-        return password_verify($password,$passBdd);
+        $passwordBdd = $this->getUserPassword($login);
+        //---<> ON VERIFIE LA CORRESPONDANCE ENTRE LE PASSWORD CRYPTE ET LE PASSWORD SOUMIS PAR LE FORMULAIRE <>---//
+        return password_verify($password,$passwordBdd);
     }
 
+    //---<> ON VERIFIE SI LE COMPTE EST ACTIVE <>---//
     public function isAccountActive($login){
         $req = "SELECT is_valid FROM users WHERE user_login = :user_login";
         $stmt = $this->getBdd()->prepare($req);
@@ -29,9 +33,9 @@ class UserManager extends MainManager{
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $stmt->closeCursor();
+        //---<> L'INFORMATION RECUPEREE EN BDD EST UNE CHAINE DE CARACTERE <>---//
+        //---<> ON MET INT POUR PRECISER QU'ON VEUT RECUPERER UN ENTIER <>---//
         return ((int)$result['is_valid'] === 1);
-        //---<> ON PEUT AUSSI ECRIRE <>---//
-        //return ($resultat['est_valide'] === 1) ? true : false;
     }
 
     public function getUserInformations($login){

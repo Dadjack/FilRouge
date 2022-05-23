@@ -166,6 +166,8 @@ try{//---<> JE VERIFIE EST CE QUE J'AI L'INFORMATION $_GET DE PAGE <>---//
             case "login" : $visitorController->login();
             break;
             case "validationLogin" :
+                //---<> ON VERIFIE QUE LES CHAMPS SONT BIEN REMPLIS <>---//
+                //--<> LES CONTROLES SUR LES INFORMATIONS DE ROUTAGE SONT MIS AU NIVEAU DU ROUTEUR <>---//
                 if(!empty($_POST['user_login']) && !empty($_POST['user_password'])){
                     $login = Security::secureHTML($_POST['user_login']);
                     $password = Security::secureHTML($_POST['user_password']);
