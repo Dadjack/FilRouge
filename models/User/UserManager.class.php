@@ -167,5 +167,23 @@ class UserManager extends MainManager{
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $stmt->closeCursor();
         return $result['image'];
+    }
+
+    public function getUsersInformations(){
+        $req = $this->getBdd()->prepare("SELECT idUser, user_login FROM users");
+        $req->execute();
+        $result = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+        return $result;
+        //var_dump($result);
+    }
+
+    public function getIdUsers(){
+        $users = $this->getUsersInformations();
+        for($i=0; $i <count($users); $i++){
+            // if($users[$i]['idUser']){
+                return $users[$i]['idUser'];
+            //}
         }
     }
+}

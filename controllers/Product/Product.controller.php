@@ -8,10 +8,12 @@ require_once "models/Product/ProductManager.class.php";
 class ProductController extends MainController{
     private $productManager;
     private $imageManager;
+    private $userManager;
 
     public function __construct(){
         $this->productManager = new ProductManager();
         $this->imageManager = new ImageManager();
+        $this->userManager = new UserManager();
     }
 
     //---<>------------------<>---//
@@ -40,16 +42,30 @@ class ProductController extends MainController{
     public function showProduct($id){
         $this->productManager->loadingProducts();
         $product = $this->productManager->getProductById($id);
+        $this->imageManager->loadingImages($id);
+        $products =  $this->imageManager->getImages();
+        $user = $this->getUserLogin($id);
         $data_page = [
             "page_description" => "Page d'un produit",
             "page_title" => "Page d'un produit",
             "product" => $product,
+            "products" => $products,
+            "user" => $user,
             "page_css" => ['products.css'],
             "view" => "views/Visitor/showProduct.view.php",
             "template" => "views/common/template.php"
         ];
         $this->generatePage($data_page);
-        var_dump($product);
+    }
+
+    public function getUserLogin($id){
+        $users = $this->userManager->getUsersInformations();
+        $products = $this->productManager->getProductsInformations($id);
+        for($i=0; $i <count($users); $i++){
+            if($users[$i]['idUser'] === $products['idUser']){
+                return $users[$i]['user_login'];
+            }
+        }
     }
 
     //---<> VOIR TOUS LES MEUBLES <>---//

@@ -24,6 +24,7 @@
     </div>
 <?php endif; ?>
 <div class="col-12 border">
+    <p>Créateur: <?= $user; ?></p>
     <p>Nom Du Produit : <?= $product->getProductName(); ?></p>
     <p>Description Du Produit : <?= $product->getProductDescription(); ?></p>
     <p>Quantité : <?= $product->getProductQuantity(); ?></p>

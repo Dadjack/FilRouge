@@ -190,4 +190,15 @@ class ProductManager extends MainManager{
             $this->getProductById($idProduct)->setProductPrice($productPrice);
         }
     }
+
+    public function getProductsInformations($id){
+        $req = "SELECT idUser FROM products WHERE idProduct = :idProduct";
+        $stmt = $this->getBdd()->prepare($req);
+        $stmt->bindValue(":idProduct",$id,PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $result;
+        //var_dump($result);
+    }
 }
