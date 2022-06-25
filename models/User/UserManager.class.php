@@ -1,8 +1,6 @@
 <?php
 require_once "models/MainManager.class.php";
 require_once "User.class.php";
-// require_once "Town.class.php";
-
 
 class UserManager extends MainManager{
     private $users;

@@ -2,19 +2,16 @@
 
 require_once "controllers/MainController.controller.php";
 require_once "models/Visitor/VisitorManager.class.php";
-// require_once "models/Product/ProductManager.class.php";
 
 class VisitorController extends MainController{
     private $visitorManager;
-
 
     public function __construct(){
         $this->visitorManager = new VisitorManager();
 
     }
+    
     //---<> FONCTIONS POUR LES VISITEURS <>---//
-
-     //Propriété "page_css" : tableau permettant d'ajouter des fichiers CSS spécifiques
     public function home(){
         $users = $this->visitorManager->getUsers();
         $data_page = [
