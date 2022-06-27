@@ -5,12 +5,16 @@ require_once "User.class.php";
 class UserManager extends MainManager{
     private $users;
 
+    public function addUser($user){
+        $this->users[] = $user;
+    }
+
     public function getUsers(){
         return $this->users;
     }
 
     // public function getCreator($id){
-    //     $req = "SELECT * FROM users WHERE idUser = :idUser";
+    //     $req = "SELECT user_login FROM users WHERE idUser = :idUser";
     //     $stmt = $this->getBdd()->prepare($req);
     //     $stmt->bindValue(":idUser",$id,PDO::PARAM_INT);
     //     $stmt->execute();
@@ -19,6 +23,97 @@ class UserManager extends MainManager{
     //     return $result;
     //     //var_dump($result);
     // }
+
+    public function getCreator(){
+        $req = "SELECT users.idUser,users.user_login FROM users
+        INNER JOIN products 
+        ON users.idUser = products.idUser";
+        $stmt = $this->getBdd()->prepare($req);
+        //$stmt->bindValue(":idUser",$id,PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $result;
+    }
+
+    // public function getCreator($id){
+    //     $req = "SELECT user_login FROM users
+    //     WHERE idUser = :idUser";
+    //     $stmt = $this->getBdd()->prepare($req);
+    //     $stmt->bindValue(":idUser",$id,PDO::PARAM_INT);
+    //     $stmt->execute();
+    //     $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    //     $stmt->closeCursor();
+    //     return $result;
+    // }
+
+        //---<> CHARGEMENT DE TOUS LES PRODUITS <>---//
+
+        // public function loadingUsers($id){              
+        //     $req = "SELECT * FROM users 
+        //     INNER JOIN products 
+        //     ON users.idUser = products.idUser ";
+        //     $stmt = $this->getBdd()->prepare($req);
+        //     $stmt->bindValue(":idUser",$id,PDO::PARAM_INT);
+        //     $stmt->execute();
+        //     //---<> ON PARCOURS LA VARIABLE mesProduits POUR ACCEDER A TOUT LES PRODUITS <>---//
+        //     $myUsers = $stmt->fetchAll(PDO::FETCH_ASSOC);//---<> POUR EVITER D'AVOIR DES DOUBLONS <>---//
+        //     //---<> FINALISE NOTRE REQUETE ET LIBERE LES ACCES POUR UNE AUTRE REQUETE <>---//
+        //     $stmt->closeCursor();
+        //     foreach($myUsers as $user){
+        //         $p = new User($user['idUser'],
+        //                         $user['user_login'],
+        //                         $user['user_mail'],
+        //                         $user['user_password'],
+        //                         $user['user_name'],
+        //                         $user['user_firstname'],
+        //                         $user['user_phone']);
+        //         $this->addUser($p);
+        //     }
+        // }
+
+        // public function loadingUsers(){              
+        //     $req = "SELECT * FROM users 
+        //     INNER JOIN products 
+        //     ON users.idUser = products.idUser";
+        //     $stmt = $this->getBdd()->prepare($req);
+        //     // $stmt->bindValue(":idUser",$id,PDO::PARAM_INT);
+        //     $stmt->execute();
+        //     //---<> ON PARCOURS LA VARIABLE mesProduits POUR ACCEDER A TOUT LES PRODUITS <>---//
+        //     $myUsers = $stmt->fetchAll(PDO::FETCH_ASSOC);//---<> POUR EVITER D'AVOIR DES DOUBLONS <>---//
+        //     //---<> FINALISE NOTRE REQUETE ET LIBERE LES ACCES POUR UNE AUTRE REQUETE <>---//
+        //     $stmt->closeCursor();
+        //     foreach($myUsers as $user){
+        //         $p = new User($user['idUser'],
+        //                         $user['user_login'],
+        //                         $user['user_mail'],
+        //                         $user['user_password'],
+        //                         $user['user_name'],
+        //                         $user['user_firstname'],
+        //                         $user['user_phone'],
+        //                         $user['idCategory']);
+        //         $this->addUser($p);
+        //     }
+        // }
+
+        // public function loadingUsers(){              
+        //     $req = $this->getBdd()->prepare("SELECT * FROM users");
+        //     $req->execute();
+        //     //---<> ON PARCOURS LA VARIABLE mesProduits POUR ACCEDER A TOUT LES PRODUITS <>---//
+        //     $myUsers = $req->fetchAll(PDO::FETCH_ASSOC);//---<> POUR EVITER D'AVOIR DES DOUBLONS <>---//
+        //     //---<> FINALISE NOTRE REQUETE ET LIBERE LES ACCES POUR UNE AUTRE REQUETE <>---//
+        //     $req->closeCursor();
+        //     foreach($myUsers as $user){
+        //         $u = new User($user['idUser'],
+        //             $user['user_login'],
+        //                         $user['user_mail'],
+        //                         $user['user_password'],
+        //                         $user['user_name'],
+        //                         $user['user_firstname'],
+        //                         $user['user_phone']);
+        //         $this->addUser($u);
+        //     }
+        // }
     
     //---<> ON RECUPERE LE MOT DE PASSE EN BDD <>---//
     private function getUserPassword($login){

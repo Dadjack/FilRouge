@@ -10,13 +10,14 @@ class Product{
     private $idUser;
     private $idCategory;
 
-    public function __construct($idProduct,$productName,$productImage,$productDescription,$productQuantity,$productPrice,$idCategory){
+    public function __construct($idProduct,$productName,$productImage,$productDescription,$productQuantity,$productPrice,$idUser,$idCategory){
         $this->idProduct = $idProduct;
         $this->productName = $productName;
         $this->productImage = $productImage;
         $this->productDescription = $productDescription;
         $this->productQuantity = $productQuantity;
         $this->productPrice = $productPrice;
+        $this->idUser = $idUser;
         $this->idCategory = $idCategory;
     }
 

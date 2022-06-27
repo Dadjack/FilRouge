@@ -45,7 +45,9 @@ class ProductController extends MainController{
         $this->imageManager->loadingImages($id);
         $products =  $this->imageManager->getImages();
         $user = $this->getUserLogin($id);
-        // $users = $this->userManager->getCreator($id);
+        // $this->userManager->loadingUsers($id);
+        //$users = $this->userManager->getUsers();
+        $users = $this->userManager->getCreator();
         // $products =  $this->imageManager->getImages();
         $data_page = [
             "page_description" => "Page d'un produit",
@@ -53,12 +55,14 @@ class ProductController extends MainController{
             "product" => $product,
             "products" => $products,
             "user" => $user,
-            //"users" => $users,
+            "users" => $users,
             "page_css" => ['products.css'],
             "view" => "views/Visitor/showProduct.view.php",
             "template" => "views/common/template.php"
         ];
         $this->generatePage($data_page);
+        var_dump($users);
+        var_dump($product);
     }
 
     public function getUserLogin($id){

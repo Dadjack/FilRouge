@@ -8,20 +8,20 @@ class User{
     private $user_name;
     private $user_firstname;
     private $user_phone;
-    private $idRight;
+    // private $idRight;
         //---<> ATTRIBUT STATIC CONTENANT LA LISTE DES PRODUITS <>---//
             //---<> ELEMENT STATIC : C'EST UNE INFORMATION DIRECTEMENT ACCESSIBLE PAR LA CLASSE ET NON PAR LES OBJETS <>---//
         //public static $produits;
         //---<> L'ATTRIBUT STATIC DISPARAIT SUITE A LA MISE EN PLACE DU GESTIONNAIRE <>---//
 
-    public function __construct($user_login,$user_mail,$user_password,$user_name,$user_firstname,$user_phone,$idRight){
+    public function __construct($idUser,$user_login,$user_mail,$user_password,$user_name,$user_firstname,$user_phone){
+        $this->idUser = $idUser;
         $this->user_login = $user_login;
         $this->user_mail = $user_mail;
         $this->user_password = $user_password;
         $this->user_name = $user_name;
         $this->user_firstname = $user_firstname;
         $this->user_phone = $user_phone;
-        $this->idRight = $idRight;
             //---<> POUR REMPLIR LE TABLEAU STATIC NOUS LE FERONS DIRECTEMENT DANS LE <>---//
             //---<> CONSTRUCTEUR EN FAISANT APPEL A LATTRIBUT PAR L'INTERMEDIAIRE DU MOT CLE SELF :: <>---//
         //---<> self::$produits[] = $this; <>---//

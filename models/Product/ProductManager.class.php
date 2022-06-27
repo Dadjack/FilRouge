@@ -33,6 +33,7 @@ class ProductManager extends MainManager{
                             $product['product_description'],
                             $product['product_quantity'],
                             $product['product_price'],
+                            $product['idUser'],
                             $product['idCategory']);
             $this->addProduct($p);
         }
@@ -51,6 +52,7 @@ class ProductManager extends MainManager{
                             $product['product_description'],
                             $product['product_quantity'],
                             $product['product_price'],
+                            $product['idUser'],
                             $product['idCategory']);
             $this->addProduct($p);
         }
@@ -69,6 +71,7 @@ class ProductManager extends MainManager{
                             $product['product_description'],
                             $product['product_quantity'],
                             $product['product_price'],
+                            $product['idUser'],
                             $product['idCategory']);
             $this->addProduct($p);
         }
@@ -87,6 +90,7 @@ class ProductManager extends MainManager{
                             $product['product_description'],
                             $product['product_quantity'],
                             $product['product_price'],
+                            $product['idUser'],
                             $product['idCategory']);
             $this->addProduct($p);
         }
@@ -106,6 +110,7 @@ class ProductManager extends MainManager{
                             $product['product_description'],
                             $product['product_quantity'],
                             $product['product_price'],
+                            $product['idUser'],
                             $product['idCategory']);
             $this->addProduct($p);
         }
