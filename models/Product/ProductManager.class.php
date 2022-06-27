@@ -201,15 +201,4 @@ class ProductManager extends MainManager{
         return $result;
         //var_dump($result);
     }
-
-    public function getCreator($id){
-        $req = "SELECT user_login FROM users WHERE idUser = :idUser";
-        $stmt = $this->getBdd()->prepare($req);
-        $stmt->bindValue(":idUser",$id,PDO::PARAM_INT);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $stmt->closeCursor();
-        return $result;
-        //var_dump($result);
-    }
 }

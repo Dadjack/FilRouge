@@ -53,7 +53,7 @@ class ProductController extends MainController{
             "product" => $product,
             "products" => $products,
             "user" => $user,
-            // "users" => $users,
+            //"users" => $users,
             "page_css" => ['products.css'],
             "view" => "views/Visitor/showProduct.view.php",
             "template" => "views/common/template.php"
