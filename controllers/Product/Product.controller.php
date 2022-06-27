@@ -45,12 +45,15 @@ class ProductController extends MainController{
         $this->imageManager->loadingImages($id);
         $products =  $this->imageManager->getImages();
         $user = $this->getUserLogin($id);
+        // $users = $this->userManager->getCreator($id);
+        // $products =  $this->imageManager->getImages();
         $data_page = [
             "page_description" => "Page d'un produit",
             "page_title" => "Page d'un produit",
             "product" => $product,
             "products" => $products,
             "user" => $user,
+            // "users" => $users,
             "page_css" => ['products.css'],
             "view" => "views/Visitor/showProduct.view.php",
             "template" => "views/common/template.php"

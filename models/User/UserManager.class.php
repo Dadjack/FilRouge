@@ -4,6 +4,10 @@ require_once "User.class.php";
 
 class UserManager extends MainManager{
     private $users;
+
+    public function getUsers(){
+        return $this->users;
+    }
     
     //---<> ON RECUPERE LE MOT DE PASSE EN BDD <>---//
     private function getUserPassword($login){
