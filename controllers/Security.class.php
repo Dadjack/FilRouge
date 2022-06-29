@@ -20,7 +20,9 @@ abstract class Security {
     }
 
     public static function generateCookieConnexion(){
+        //---<> ON GENERE UNE VALEUR POUR LE COOKIE <>---//
         $ticket = session_id().microtime().rand(0,999999);
+        //---<> ON CRYPTE CETTE VALEUR <>---//
         $ticket = hash("sha512",$ticket);
         setcookie(self::COOKIE_NAME,$ticket,time()+(60*60));
         $_SESSION['profile'][self::COOKIE_NAME] = $ticket;
