@@ -35,7 +35,7 @@
     <?php require_once "views/common/footer.php"; ?>
 
             <!--<> ON PEUT RAJOUTER DU JAVASCRIPT SPECIFIQUE GRACE A LA VARIABLE PAGE_JAVASCRIPT <>-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script> -->
     <?php if(!empty($page_javascript)) : ?>
         <?php foreach($page_javascript as $fichier_javascript) : ?>
             <script src="<?= URL?>public/JavaScript/<?= $fichier_javascript ?>"></script>
