@@ -44,35 +44,16 @@ class ProductController extends MainController{
         $product = $this->productManager->getProductById($id);
         $this->imageManager->loadingImages($id);
         $products =  $this->imageManager->getImages();
-        $user = $this->getUserLogin($id);
-        // $this->userManager->loadingUsers($id);
-        //$users = $this->userManager->getUsers();
-        $users = $this->userManager->getCreator();
-        // $products =  $this->imageManager->getImages();
         $data_page = [
             "page_description" => "Page d'un produit",
             "page_title" => "Page d'un produit",
             "product" => $product,
             "products" => $products,
-            "user" => $user,
-            "users" => $users,
-            "page_css" => ['products.css'],
             "view" => "views/Visitor/showProduct.view.php",
             "template" => "views/common/template.php"
         ];
         $this->generatePage($data_page);
-        var_dump($users);
-        var_dump($product);
-    }
-
-    public function getUserLogin($id){
-        $users = $this->userManager->getUsersInformations();
-        $products = $this->productManager->getProductsInformations($id);
-        for($i=0; $i <count($users); $i++){
-            if($users[$i]['idUser'] === $products['idUser']){
-                return $users[$i]['user_login'];
-            }
-        }
+        // var_dump($product);
     }
 
     //---<> VOIR TOUS LES MEUBLES <>---//
@@ -88,8 +69,7 @@ class ProductController extends MainController{
             "template" => "views/common/template.php"
         ];
         $this->generatePage($data_page);
-        //unset($_SESSION['alert']);//---<> C'EST UNE ACTION DE PILOTAGE ON LA MET DANS LE CONTROLEUR <>---//
-        var_dump($products);
+        // var_dump($products);
     }
 
     //---<> VOIR TOUS LES DESSINS <>---//
@@ -105,8 +85,7 @@ class ProductController extends MainController{
             "template" => "views/common/template.php"
         ];
         $this->generatePage($data_page);
-        //unset($_SESSION['alert']);//---<> C'EST UNE ACTION DE PILOTAGE ON LA MET DANS LE CONTROLEUR <>---//
-        var_dump($products);
+        // var_dump($products);
     }
 
     //---<> VOIR TOUS LES GALETS <>---//
@@ -122,8 +101,7 @@ class ProductController extends MainController{
             "template" => "views/common/template.php"
         ];
         $this->generatePage($data_page);
-        //unset($_SESSION['alert']);//---<> C'EST UNE ACTION DE PILOTAGE ON LA MET DANS LE CONTROLEUR <>---//
-        var_dump($products);
+        // var_dump($products);
     }
 
     //---<>---------------------<>---//
@@ -143,7 +121,7 @@ class ProductController extends MainController{
             "template" => "views/common/template.php"
         ];
         $this->generatePage($data_page);
-        var_dump($products);
+        // var_dump($products);
     }
 
     //---<> VOIR UN PRODUIT <>---//
@@ -162,7 +140,7 @@ class ProductController extends MainController{
             "template" => "views/common/template.php"
         ];
         $this->generatePage($data_page);
-        var_dump($product);
+        // var_dump($product);
     }
 
     //---<> AJOUTER UN PRODUIT <>---//

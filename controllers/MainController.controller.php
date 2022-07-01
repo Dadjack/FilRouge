@@ -3,7 +3,7 @@
 require_once "controllers/Toolbox.class.php";
 
 
-//---<> ELLE NE PEUT PAS ETRE INSTANCIEE PAR ELLE MEME / ELLE NE PEUT PAS AVOIR D'OBJETS  <>---//
+//---<> ELLE NE PEUT PAS ETRE INSTANCIEE <>---//
 abstract class MainController {
 
     //---<> FONCTIONS PERMETTANT D'AFFICHER MES PAGES <>---//
@@ -20,8 +20,6 @@ abstract class MainController {
         $page_content = ob_get_clean();
         require_once($template);
     }
-
-    
 
     protected function errorPage($msg){
         $data_page = [

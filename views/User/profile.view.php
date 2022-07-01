@@ -1,5 +1,6 @@
 <div class="text-center">
     <h1>Welcome <?= $user['user_login'] ?></h1>
+    
 
     <!--<> CHANGE IMAGE --<>-->
     <div>

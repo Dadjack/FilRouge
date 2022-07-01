@@ -2,15 +2,12 @@
 
 require_once "controllers/MainController.controller.php";
 require_once "models/User/UserManager.class.php";
-require_once "models/Address/AddressManager.class.php";
 
 class UserController extends MainController{
     private $userManager;
 
     public function __construct(){
         $this->userManager = new UserManager();
-        $this->addressManager = new AddressManager();
-
     }
 
     //---<> VALIDATION DU LOGIN <>---//
@@ -45,27 +42,20 @@ class UserController extends MainController{
     //---<> PROFIL <>---//
     public function profile(){
         $datas = $this->userManager->getUserInformations($_SESSION['profile']['login']);
-        $dataAddress = $this->addressManager->getAddressInformations();
-        // $dataTown = $this->userManager->getTownInformations($_SESSION['profile']['login']);
         $_SESSION['profile']["role"] = $datas['role'];
         $_SESSION['profile']["idUser"] = $datas['idUser'];
         $data_page = [
             "page_description" => "Page de profil",
             "page_title" => "Page de profil",
             "user" => $datas,
-            "address" => $dataAddress,
-            // "town" => $dataTown,
             "page_javascript"=> ['profil.js'],
             "view" => "views/User/profile.view.php",
             "template" => "views/common/template.php"
         ];
         $this->generatePage($data_page);
-        //var_dump($datas);
-        //var_dump($dataAddress);
     }
 
     //---<> DECONNEXION <>---//
-
     public function disconnection(){
         Toolbox::addAlertMessage("Vous êtes maintenant déconnecté", Toolbox::COULEUR_VERTE);
         unset($_SESSION['profile']);
@@ -74,7 +64,6 @@ class UserController extends MainController{
     }
 
     //---<> VALIDATION CREATION DU COMPTE <>---//
-
     public function validationCreateAccount($login,$mail,$password){
         if($this->userManager->checkLoginAvailable($login)){
             $passwordCrypte = password_hash($password, PASSWORD_DEFAULT);
@@ -94,7 +83,6 @@ class UserController extends MainController{
     }
 
     //---<> ENVOI DU MAIL DE VALIDATION <>---//
-
     private function sendMailValidation($login,$mail,$clef){
         $urlVerification = URL."validationMail/".$login."/".$clef;
         $subject = "Création du compte sur le site xxx";
@@ -103,7 +91,6 @@ class UserController extends MainController{
     }
 
     //---<> RENVOI DU MAIL DE VALIDATION <>---//
-
     public function sendBackMailValidation($login){
         $user = $this->userManager->getUserInformations($login);
         $this->sendMailValidation($login,$user['user_mail'],$user['clef']);
@@ -111,7 +98,6 @@ class UserController extends MainController{
     }
 
     //---<> VALIDATION DU MAIL <>---//
-
     public function validationMailAccount($login,$clef){
         if($this->userManager->validationMailAccountBdd($login,$clef)){
             Toolbox::addAlertMessage("Le compte a été activé !", Toolbox::COULEUR_VERTE);
@@ -122,8 +108,7 @@ class UserController extends MainController{
         }
     }
 
-    //---<> VALIDATION CHANGEMENT DU MAIL <>---//
-    
+    //---<> VALIDATION CHANGEMENT DU MAIL <>---//    
     public function validationChangeMail($mail){
         if($this->userManager->changeUserMailBdd($_SESSION['profile']['login'],$mail)){
             Toolbox::addAlertMessage("La modification est effectuée !", Toolbox::COULEUR_VERTE);
@@ -134,7 +119,6 @@ class UserController extends MainController{
     }
 
     //---<> VALIDATION CHANGEMENT DU NOM <>---//
-
     public function validationChangeName($name){
         if($this->userManager->changeUserNameBdd($_SESSION['profile']['login'],$name)){
             Toolbox::addAlertMessage("La modification est effectuée !", Toolbox::COULEUR_VERTE);
@@ -145,7 +129,6 @@ class UserController extends MainController{
     }
 
     //---<> VALIDATION CHANGEMENT DU PRENOM <>---//
-
     public function validationChangeFirstName($firstName){
         if($this->userManager->changeUserFirstNameBdd($_SESSION['profile']['login'],$firstName)){
             Toolbox::addAlertMessage("La modification est effectuée !", Toolbox::COULEUR_VERTE);
@@ -156,7 +139,6 @@ class UserController extends MainController{
     }
 
     //---<> VALIDATION CHANGEMENT DU NUMERO DE TELEPHONE <>---//
-
     public function validationChangePhone($phone){
         if($this->userManager->changeUserPhoneBdd($_SESSION['profile']['login'],$phone)){
             Toolbox::addAlertMessage("La modification est effectuée !", Toolbox::COULEUR_VERTE);
@@ -167,7 +149,6 @@ class UserController extends MainController{
     }
 
     //---<> CHANGEMENT DU MOT DE PASSE <>---//
-
     public function changePassword(){
         $data_page = [
             "page_description" => "Modification du mot de passe",
@@ -180,7 +161,6 @@ class UserController extends MainController{
     }
 
     //---<> VALIDATION CHANGEMENT DU MOT DE PASSE <>---//
-
     public function validationChangePassword($oldPass,$newPass,$confirmNewPass){
         if($newPass === $confirmNewPass){
             if($this->userManager->isValidCombination($_SESSION['profile']['login'],$oldPass)){
@@ -202,8 +182,7 @@ class UserController extends MainController{
         }       
     }
 
-    //---<> VALIDATION SUPPRESSION DU COMPTE <>---//
-    
+    //---<> VALIDATION SUPPRESSION DU COMPTE <>---//    
     public function validationDeleteAccount(){
         $this->fileDeleteUserImage($_SESSION['profile']['login']);
         rmdir("public/images/profils/".$_SESSION['profile']['login']);
@@ -217,7 +196,6 @@ class UserController extends MainController{
     }
 
     //---<> VALIDATION CHANGEMENT DE L'IMAGE <>---//
-
     public function validationChangeImage($file){
         try{
             $directory = "public/images/profils/".$_SESSION['profile']['login']."/";
@@ -238,7 +216,6 @@ class UserController extends MainController{
     }
 
     //---<> SUPPRESSION DE L'IMAGE DE L'UTILISATEUR <>---//
-
     private function fileDeleteUserImage(){
         $oldImage = $this->userManager->getUserImage($_SESSION['profile']['login']);
         if($oldImage !== "profils/profil.png"){
@@ -246,20 +223,7 @@ class UserController extends MainController{
         }
     }
 
-    //---<> PAGE D'AJOUT AU PANIER <>---//
-
-    // public function addCart(){
-    //     $data_page = [
-    //         "page_description" => "Page de panier",
-    //         "page_title" => "Page de panier",
-    //         "view" => "views/User/cart.view.php",
-    //         "template" => "views/common/template.php"
-    //     ];
-    //     $this->generatePage($data_page);
-    // }
-
     //---<> PAGE COMMENTAIRES <>---//
-
     public function comments(){
         $data_page = [
             "page_description" => "Page de contact",
@@ -271,7 +235,6 @@ class UserController extends MainController{
     }
 
     //---<> PAGE DE CONTACT <>---//
-
     // public function contact(){
     //     $data_page = [
     //         "page_description" => "Page de contact",
